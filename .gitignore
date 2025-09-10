@@ -1,2 +1,5 @@
 # Ignore virtual env
 my_env/
+
+# Ignore data
+data/
