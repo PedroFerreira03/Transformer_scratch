@@ -179,9 +179,7 @@ Transformer(
 - Automatic early stopping on EOS token
 
 ### Training Optimizations
-- Gradient accumulation support
-- Mixed precision compatibility  
-- Comprehensive logging and checkpointing
+ - Comprehensive logging and checkpointing
 - Overfitting prevention with multiple regularization techniques
 
 ### Data Processing
@@ -190,8 +188,6 @@ Transformer(
 - Causal masking for autoregressive training
 
 ## Performance Considerations
-
-- Model size: ~15M parameters (with default config)
 - Memory usage: Optimized with KV caching
 - Training time: Varies by dataset size and hardware
 - Generation speed: Fast with cached attention
@@ -211,13 +207,6 @@ Transformer(
 - Check attention patterns during generation
 - Validate tokenizer behavior with sample texts
 - Use gradient clipping if gradients explode
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make changes with proper testing
-4. Submit a pull request
 
 ## License
 
