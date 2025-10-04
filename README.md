@@ -90,19 +90,21 @@ for epoch in range(num_epochs):
 ### Text Generation
 
 ```python
-# Load trained model
-model = Transformer(voc_size=30000, embed_size=128, num_heads=4, depth=4, pad_idx=2)
-model.load_state_dict(torch.load("models/best_model.pth"))
+# Select device
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-# Generate text
-prompt = "Hello world"
-prompt_ids = tokenizer.encode(prompt).ids
-generated_text = model.generate_from_prompt(
-    prompt_ids, 
-    sample='p',      # 'greedy', 'k', or 'p'
-    max_size=100
-)
-print(generated_text)
+# Load trained model
+model = Transformer(voc_size=vocabulary_size, embed_size=128, num_heads=4, depth=4,\
+                    pad_idx=pad_idx, p=0.6).to(device)
+
+state = torch.load("models/overall_best.pth", map_location=device, weights_only=True)
+model.load_state_dict(state)
+
+# Generate answer from prompt
+prompt = [Your prompt]
+tokens_ids = tokenizer.encode(prompt).ids
+ans = model.generate_from_prompt(tokens_ids, sample='k')
+print(ans)
 ```
 
 ### Sampling Methods
